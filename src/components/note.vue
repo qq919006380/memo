@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="note" v-for="(item,index) in noteDate" :key="index" :style="position">
+    <div class="note" v-for="(item,index) in noteDate" :key="index" :style="`left:${180*index}px`">
     <div class="note-head">
       <span class="username"></span>
       <span class="delete" @click="delete_note">&times;</span>
@@ -28,7 +28,9 @@ export default {
     }
   },
   mounted() {
-    console.log(this.noteDate)
+    this.$on('addd',()=>{
+      console.log('sd')
+    })
     this.init();
     this.bindEvent();
   },
@@ -43,14 +45,14 @@ export default {
       
     },
     edit_note: function() {
-      console.log('edit')
+      this.$toasted.show('编辑成功')
     },
-    add: function(msg) {
-      console.log("add");
-      //todo
+    add_note: function() {
+      this.$toasted.show('新增成功')
     },
     delete_note: function() {
-      console.log("delete");
+      this.$toasted.show('删除成功')
+
     }
   }
 };

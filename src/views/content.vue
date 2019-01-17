@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <note msg="Welcome to Your Vue.js App"/>
+    <note/>
   </div>
 </template>
 
@@ -11,7 +11,13 @@ import Note from '@/components/note.vue'
 export default {
   name: 'home',
   components: {
-    Note
-  }
+    'note':Note
+  },
+  created(){
+    this.$on('addd',()=>{
+      console.log('sd')
+    })
+  },
+  
 }
 </script>
