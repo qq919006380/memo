@@ -22,7 +22,7 @@ export default {
     }
   },
   cumputed:{
-    position(){
+    position() {
       return 's'
     }
   },
