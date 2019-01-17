@@ -9,7 +9,7 @@
 export default {
   methods: {
     add() {
-      this.$EventBus.$emit("add_note");
+      this.$EventBus.$emit("add_note"); 
     }
   }
 };
