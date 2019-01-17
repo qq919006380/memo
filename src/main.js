@@ -1,10 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-
 import VueLocalStorage from 'vue-localstorage'
 import Toasted from 'vue-toasted';
-
 import Content from "./views/content.vue";
 import Nav from "./views/nav.vue";
 
@@ -17,6 +15,9 @@ Vue.use(Toasted,{
 
 Vue.component("my-content", Content);
 Vue.component("my-nav", Nav);
+
+Vue.prototype.$EventBus = new Vue()
+
 Vue.config.productionTip = false;
 
 new Vue({

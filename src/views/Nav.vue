@@ -9,8 +9,7 @@
 export default {
   methods: {
     add() {
-      console.log(123);
-      this.$emit("addd");
+      this.$EventBus.$emit("add_note");
     }
   }
 };

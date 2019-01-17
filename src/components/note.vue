@@ -1,60 +1,18 @@
 <template>
-  <div>
-    <div class="note" v-for="(item,index) in noteDate" :key="index" :style="`left:${180*index}px`">
+  <div class="note">
     <div class="note-head">
       <span class="username"></span>
-      <span class="delete" @click="delete_note">&times;</span>
+      <span class="delete" @click="$EventBus.$emit('delete_note',$event)">&times;</span>
     </div>
-    <div class="note-ct" contenteditable="true" @blur="edit_note">
-       {{item}}
+    <div class="note-ct" contenteditable="true" @blur="$EventBus.$emit('edit_note')">
+      <slot></slot>
     </div>
   </div>
-  </div> 
 </template>
 
 <script>
-import Vue from "vue";
 export default {
   name: "note",
-  data(){
-    return {
-      noteDate:JSON.parse(`[${Vue.localStorage.get("noteDate")}]`)
-    }
-  },
-  cumputed:{
-     
-    position() {
-      return 's'
-    }
-  },
-  mounted() {
-    this.$on('addd',()=>{
-      console.log('sd')
-    })
-    this.init();
-    this.bindEvent();
-  },
-  methods: {
-    init() {
-      if (!Vue.localStorage.note) {
-        Vue.localStorage.set("noteDate", [1,2,3]);
-      }
-
-    },
-    bindEvent() {
-      
-    },
-    edit_note: function() {
-      this.$toasted.show('编辑成功')
-    },
-    add_note: function() {
-      this.$toasted.show('新增成功')
-    },
-    delete_note: function() {
-      this.$toasted.show('删除成功')
-
-    }
-  }
 };
 </script>
 
