@@ -1,6 +1,10 @@
 <template>
   <div class="content">
-    <note v-for="(item,index) in data" :key="index" :style="`left:${180*index}px`">{{item}}</note>
+    <note
+      v-for="(item,index) in data"
+      :key="index"
+      :style="`left:${180*index}px`"
+    >{{item}}</note>
   </div>
 </template>
 
@@ -27,18 +31,17 @@ export default {
     });
 
     this.$EventBus.$on("delete_note", s => {
-      console.log(s);
       this.$toasted.show("删除成功");
     });
     this.$EventBus.$on("edit_note", () => {
       this.$toasted.show("编辑成功");
     });
   },
-
+  methods: {
+  },
   components: {
     note: Note
-  },
-  created() {}
+  }
 };
 </script>
 <style>
