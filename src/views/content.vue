@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <note v-for="(item,index) in noteDate" :key="index" :style="`left:${180*index}px`">{{item}}</note>
+    <note v-for="(item,index) in data" :key="index" :style="`left:${180*index}px`">{{item}}</note>
   </div>
 </template>
 
@@ -11,24 +11,21 @@ import Note from "@/components/note.vue";
 export default {
   data() {
     return {
-      aaa: [],
-      noteDate: JSON.parse(`[${Vue.localStorage.get("noteDate")}]`)
+      data: JSON.parse(`["${window.localStorage.noteDate}"]`)
     };
   },
-  created() {
-    if (!Vue.localStorage.note) {
-      Vue.localStorage.set("noteDate", this.aaa);
+  beforeCreate() {
+    if (!Vue.localStorage.noteDate) {
+      window.localStorage.noteDate = ["欢迎使用Note"];
     }
-    localStorage.set('ss',11)
-    localStorage.t=1
   },
   mounted() {
     this.$EventBus.$on("add_note", () => {
-      this.aaa.push("1");
-      this.noteDate.push("1")
-      Vue.localStorage.set("noteDate", this.aaa);
+      this.data.push("1");
+      window.localStorage.noteDate = [`[${this.data}]`];
       this.$toasted.show("新增成功");
     });
+
     this.$EventBus.$on("delete_note", s => {
       console.log(s);
       this.$toasted.show("删除成功");
